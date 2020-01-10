@@ -1,0 +1,24 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: http-server-app
+  labels:
+    app: http-server
+spec:
+  containers:
+    - name: http-server-app
+      image: hashicorp/http-echo
+      args:
+        - "-text=http-server-app"
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: http-svc
+spec:
+  selector:
+    app: http-server
+  ports:
+    - port: 5678 # Default port for image
